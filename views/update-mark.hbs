@@ -1,0 +1,41 @@
+<div class="row">
+    <form action="/marks/update/{{lesson._id}}" method="POST" class="col s12">
+        <h2>Փոփոխել {{mark.topic}}</h2>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="topic" value="{{mark.topic}}">
+                <label>Թեմա</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input type="text" name="type" value="{{mark.type}}">
+                <label>Տեսակը</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="date" name="date" value="{{mark.date}}">
+                <label>Ամսաթիվ</label>
+            </div>
+            <div class="input-field col s6">
+                <select name="subject_id" id="subject_id">
+                    <option value="" disabled>Ընտրել առարկա</option>
+                    {{#each marks}}
+                        <option value="{{_id}}" {{#equal ../mark.subject_id _id}} selected {{/equal}}>
+                            {{name}}
+                        </option>
+                    {{/each}}
+                </select>
+                <label>Ընտրել առարկա</label>
+            </div>
+        </div>
+
+        <div class="btn-padding">
+            <button type="submit" class="btn">Փոփոխել</button>
+        </div>
+    </form>
+
+</div>
+

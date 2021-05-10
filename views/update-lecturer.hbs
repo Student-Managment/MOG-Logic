@@ -1,0 +1,10 @@
+<form action="/lecturers/update/{{lecturer._id}}" method="POST">
+    <h2>Փոփոխել {{lecturer.fullName}}</h2>
+
+    <div class="input-field">
+        <input type="text" name="fullName" value="{{lecturer.fullName}}">
+        <label>Անուն, ազգանուն</label>
+    </div>
+
+    <button type="submit" class="btn">Փոփոխել </button>
+</form>

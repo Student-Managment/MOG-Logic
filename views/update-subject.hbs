@@ -1,0 +1,10 @@
+<form action="/subjects/update/{{subject._id}}" method="POST">
+    <h2>Update {{subject.name}}</h2>
+
+    <div class="input-field">
+        <input type="text" name="name" value="{{subject.name}}">
+        <label>Subject name</label>
+    </div>
+
+    <button type="submit" class="btn">Update</button>
+</form>

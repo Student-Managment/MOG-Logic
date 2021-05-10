@@ -1,0 +1,16 @@
+<form action="/students/update/{{student._id}}" method="POST">
+    <h2>Update {{student.fullName}}</h2>
+    <h2>Update {{student.group}}</h2>
+
+    <div class="input-field">
+        <input type="text" name="fullName" value="{{student.fullName}}">
+        <label>Student name</label>
+    </div>
+
+    <div class="input-field">
+        <input type="text" name="group" value="{{student.group}}">
+        <label>Student group</label>
+    </div>
+
+    <button type="submit" class="btn">Update</button>
+</form>

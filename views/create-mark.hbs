@@ -1,0 +1,38 @@
+<div class="row">
+    <form action="/marks/create" method="POST" class="col s12">
+        <h2>Ավելացնել գնահատական</h2>
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="topic">
+                <label>Գնահատական</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input type="text" name="type">
+                <label>Տեսակը</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="date" name="date">
+                <label>Ամսաթիվ</label>
+            </div>
+
+            <div class="input-field col s6">
+                <select name="subject_id" id="subject_id">
+                    <option value="" disabled selected>Ընտրել գնահատական</option>
+                    {{#each marks}}
+                        <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <label>Ընտրել գնահատական</label>
+            </div>
+        </div>
+
+
+        <div class="btn-padding">
+            <button type="submit" class="btn">Ավելացնել</button>
+        </div>
+    </form>
+</div>

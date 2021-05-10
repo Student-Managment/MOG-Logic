@@ -1,0 +1,33 @@
+<div class="student">
+    <div class="table-head">
+        <h2>Students</h2>
+        <a class="btn btn-small" href="/students/create">Add student</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Group</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each students}}
+            <form action="students/delete/{{_id}}" method="GET">
+                <tr>
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{fullName}}</td>
+                    <td>{{group}}</td>
+                    <td>
+                        <a class="btn btn-small" href="/students/update/{{_id}}">Edit</a>
+                        <button class="btn btn-small" type="submit">Delete</button>
+                    </td>
+                </tr>
+            </form>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+

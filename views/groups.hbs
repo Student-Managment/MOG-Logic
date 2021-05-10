@@ -1,0 +1,33 @@
+<div class="subject">
+    <div class="table-head">
+        <h2>Խմբեր</h2>
+        <a class="btn btn-small" href="/groups/create">Ավելացնել խումբ</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Խմբի անուն</th>
+            <th scope="col">Կուրս</th>
+            <th scope="col">Գործողություններ</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each groups}}
+            <form action="groups/delete/{{_id}}" method="GET">
+                <tr>
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{name}}</td>
+                    <td>Errord kurs</td>
+                    <td>
+                        <a class="btn btn-small" href="/groups/update/{{_id}}">Փոփոխել</a>
+                        <button class="btn btn-small" type="submit">Ջնջել</button>
+                    </td>
+                </tr>
+            </form>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+

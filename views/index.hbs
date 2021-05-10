@@ -1,0 +1,26 @@
+<h2>Todos page</h2>
+
+{{#if todos.length}}
+
+    <ul>
+        {{#each todos}}
+            <li class="todo">
+                <form action="/delete/{{_id}}" method="GET">
+                    <label>
+                        <a href="/update/{{_id}}">
+                            <span class="completed">{{title}}</span>
+                        </a>
+
+                        <input type="hidden" value="{{_id}}" name="id">
+
+                        <button class="btn btn-small" type="submit">Delete</button>
+                    </label>
+                </form>
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p>No todos!</p>
+{{/if}}
+
+

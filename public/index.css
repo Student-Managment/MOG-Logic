@@ -1,0 +1,43 @@
+.form {
+    margin-bottom: 1rem;
+}
+
+.todo span.completed {
+    text-decoration: line-through;
+}
+
+.form label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: #f3f3f3;
+    padding: 1rem;
+}
+
+.form i {
+    z-index: 2;
+}
+
+.subject {
+    margin-top: 50px;
+}
+
+.table-head {
+    margin: 10px auto;
+}
+
+.table-head>a {
+    float: right;
+}
+
+.input-field {
+    position: sticky;
+}
+.input-field>label {
+    position: relative;
+}
+select {
+    display: inline;
+}

@@ -1,0 +1,31 @@
+<div class="subject">
+    <div class="table-head">
+        <h2>Դասախոսներ</h2>
+        <a class="btn btn-small" href="/lecturers/create">Ավելացնել դասախոս</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Անուն, ազգանուն</th>
+            <th scope="col">Գործողություններ</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each lecturers}}
+            <form action="lecturers/delete/{{_id}}" method="GET">
+                <tr>
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{fullName}}</td>
+                    <td>
+                        <a class="btn btn-small" href="/lecturers/update/{{_id}}">Փոփոխել</a>
+                        <button class="btn btn-small" type="submit">Ջնջել</button>
+                    </td>
+                </tr>
+            </form>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,35 @@
+<div class="subject">
+    <div class="table-head">
+        <h2>Թեմաներ</h2>
+        <a class="btn btn-small" href="/lessons/create">Ավելացնել թեմա</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Թեմա</th>
+            <th scope="col">Տեսակը</th>
+            <th scope="col">Ամսաթիվ</th>
+            <th scope="col">Գործողություններ</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each lessons}}
+            <form action="lessons/delete/{{_id}}" method="GET">
+                <tr>
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{topic}}</td>
+                    <td>{{type}}</td>
+                    <td>{{date}}</td>
+                    <td>
+                        <a class="btn btn-small" href="/lessons/update/{{_id}}">Փոփոխել</a>
+                        <button class="btn btn-small" type="submit">Ջնջել</button>
+                    </td>
+                </tr>
+            </form>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+

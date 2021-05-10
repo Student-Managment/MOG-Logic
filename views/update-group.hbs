@@ -1,0 +1,10 @@
+<form action="/groups/update/{{group._id}}" method="POST">
+    <h2>Փոփոխել {{group.name}}</h2>
+
+    <div class="input-field">
+        <input type="text" name="name" value="{{group.name}}">
+        <label>Խմբի անուն</label>
+    </div>
+
+    <button type="submit" class="btn">Փոփոխել </button>
+</form>
