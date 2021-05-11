@@ -1,28 +1,26 @@
 <div class="student">
     <div class="table-head">
-        <h2>Students</h2>
-        <a class="btn btn-small" href="/students/create">Add student</a>
+        <h2>{{group.name}} Ուսանողներ</h2>
+        <a class="btn btn-small" href="/groups/students/create/{{groupID}}">Ավելացնել ուսանող</a>
     </div>
 
     <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Student Name</th>
-            <th scope="col">Group</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Անուն, ազգանուն</th>
+            <th scope="col">Գործողություններ</th>
         </tr>
         </thead>
         <tbody>
         {{#each students}}
-            <form action="students/delete/{{_id}}" method="GET">
+            <form action="/groups/students/{{group_id}}/delete/{{_id}}" method="GET">
                 <tr>
                     <th scope="row">{{inc @index}}</th>
                     <td>{{fullName}}</td>
-                    <td>{{group}}</td>
                     <td>
-                        <a class="btn btn-small" href="/students/update/{{_id}}">Edit</a>
-                        <button class="btn btn-small" type="submit">Delete</button>
+                        <a class="btn btn-small" href="/groups/students/{{group_id}}/{{_id}}">Փոփոխել</a>
+                        <button class="btn btn-small" type="submit">Ջնջել</button>
                     </td>
                 </tr>
             </form>

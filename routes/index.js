@@ -8,8 +8,8 @@ const lessonsRoutes = require('./lessons');
 
 router.use('/groups', groupsRoutes);
 router.use('/subjects', subjectsRoutes);
-router.use('/students', studentsRoutes);
+router.use('/groups/students', studentsRoutes);
 router.use('/lecturers', lecturersRoutes);
-router.use('/lessons', lessonsRoutes);
+router.use('/subjects/lessons', lessonsRoutes);
 
 module.exports = { router };

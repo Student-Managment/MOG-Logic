@@ -37,11 +37,12 @@ app.use(express.urlencoded({ extended: true }))         // url-ner@ kardalu hama
 app.use(express.static(path.join(__dirname, 'public')))        // public-um css
 
 app.use('/', router);
+router.use('/', (req, res) => res.render('index'));
 
 async function start() {
     try {
         await mongoose.connect(
-           'mongodb+srv://Student_base:Student_base@cluster0.ozy9q.mongodb.net/todos?retryWrites=true&w=majority',
+           process.env.MONGO_URI,
             {
                 useNewUrlParser: true,
                 useFindAndModify: false,

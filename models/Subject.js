@@ -9,11 +9,6 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Group',
         required: true
-    },
-    lecturer_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Lecturer',
-        required: true
     }
 }, {
     timestamps: true,
@@ -22,8 +17,21 @@ const schema = new Schema({
     toObject: { virtuals: true },
 });
 
+schema.virtual('lessons_count', {
+    ref: 'Lesson',
+    localField: '_id',
+    foreignField: 'subject_id',
+    count: true,
+});
+
 schema.virtual('lessons', {
     ref: 'Lesson',
+    localField: '_id',
+    foreignField: 'subject_id',
+});
+
+schema.virtual('lecturer', {
+    ref: 'Lecturer',
     localField: '_id',
     foreignField: 'subject_id',
 });

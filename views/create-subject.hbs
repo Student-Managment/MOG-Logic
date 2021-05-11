@@ -1,10 +1,28 @@
-<form action="/subjects/create" method="POST">
-    <h2>Create subject</h2>
+<div class="row">
+    <form action="/subjects/create" method="POST" class="col s12">
+        <h2>Ավելացնել առարկա</h2>
 
-    <div class="input-field">
-        <input type="text" name="name">
-        <label>Subject name</label>
-    </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="name">
+                <label>Առարկայի անվանուն</label>
+            </div>
 
-    <button type="submit" class="btn">Create</button>
-</form>
+            <div class="input-field col s6">
+                <select name="group_id" id="group_id">
+                    <option value="" disabled selected>Ընտրել խումբ</option>
+                    {{#each groups}}
+                        <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <label>Ընտրել խումբ</label>
+            </div>
+        </div>
+
+        <div class="btn-padding">
+            <button type="submit" class="btn">Ավելացնել</button>
+        </div>
+    </form>
+</div>
+
+

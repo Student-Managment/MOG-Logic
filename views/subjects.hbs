@@ -1,16 +1,17 @@
 <div class="subject">
     <div class="table-head">
-        <h2>Subjects</h2>
-        <a class="btn btn-small" href="/subjects/create">Add subject</a>
+        <h2>Առարկաներ({{count}})</h2>
+        <a class="btn btn-small" href="/subjects/create">Ավելացնել առարկա</a>
     </div>
 
     <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Subject Name</th>
-            <th scope="col">ID</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Առարկայի անվանում</th>
+            <th scope="col">Դասախոս</th>
+            <th scope="col">Թեմաներ</th>
+            <th scope="col">Գործողություններ</th>
         </tr>
         </thead>
         <tbody>
@@ -18,11 +19,16 @@
             <form action="subjects/delete/{{_id}}" method="GET">
                 <tr>
                     <th scope="row">{{inc @index}}</th>
-                    <td>{{name}}</td>
-                    <td>{{_id}}</td>
+                    <td><a href="/subjects/{{_id}}">{{name}}</a></td>
+                    <td>{{#each lecturer}}
+                            {{fullName}}
+                        {{/each}}    
+                    </td>
                     <td>
-                        <a class="btn btn-small" href="/subjects/update/{{_id}}">Edit</a>
-                        <button class="btn btn-small" type="submit">Delete</button>
+                        <a href="subjects/lessons/{{_id}}">Թեմաներ ({{lessons_count}})</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-small" type="submit">Ջնջել</button>
                     </td>
                 </tr>
             </form>

@@ -1,10 +1,21 @@
-<form action="/groups/update/{{group._id}}" method="POST">
-    <h2>Փոփոխել {{group.name}}</h2>
+<div class="row">
+    <form action="/groups/{{group._id}}" method="POST" class="col s12">
+        <h2>Փոփոխել {{group.name}}</h2>
 
-    <div class="input-field">
-        <input type="text" name="name" value="{{group.name}}">
-        <label>Խմբի անուն</label>
-    </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="name"  value="{{group.name}}">
+                <label>Խմբի անուն</label>
+            </div>
 
-    <button type="submit" class="btn">Փոփոխել </button>
-</form>
+            <div class="input-field col s6">
+                <input type="text" name="course"  value="{{group.course}}">
+                <label>Կուրս</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn">Փոփոխել </button>
+    </form>
+</div>
+
+

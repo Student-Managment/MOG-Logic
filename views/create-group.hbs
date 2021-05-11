@@ -1,10 +1,20 @@
-<form action="/groups/create" method="POST">
-    <h2>Ստեղծել խումբ</h2>
+<div class="row">
+    <form action="/groups/create" method="POST" class="col s12">
+        <h2>Ստեղծել խումբ</h2>
 
-    <div class="input-field">
-        <input type="text" name="name">
-        <label>Խմբի անուն</label>
-    </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="name">
+                <label>Խմբի անուն</label>
+            </div>
 
-    <button type="submit" class="btn">Ստեղծել</button>
-</form>
+            <div class="input-field col s6">
+                <input type="text" name="course">
+                <label>Կուրս</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn">Ստեղծել</button>
+    </form>
+</div>
+
