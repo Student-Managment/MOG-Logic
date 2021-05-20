@@ -5,6 +5,10 @@ const schema = new Schema({
         type: String,
         required: true
     },
+    faculty: {
+        type: String,
+        required: true
+    },
     course: {
         type: Number,
         required: true

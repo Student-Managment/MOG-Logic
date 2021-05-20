@@ -13,8 +13,14 @@ exports.getGroups = async (req, res) => {
                             .populate({ path: 'lecturer' })
                             .lean();
     const count = await Group.countDocuments(queryObject);
-
+    console.log(groups);
     res.render('groups', { groups, count });
+}
+
+exports.getJournal = async (req, res) => {
+    const group = await Group.findById(req.params.id).lean();
+
+    res.render('journal', { group });
 }
 
 exports.createGroupPage = (req, res) => {
@@ -29,6 +35,7 @@ exports.getGroupById = async (req, res) => {
 exports.createGroup = async (req, res) => {
     const group = new Group({
         name: req.body.name,
+        faculty: req.body.faculty,
         course: req.body.course
     })
     await group.save();
@@ -38,6 +45,7 @@ exports.createGroup = async (req, res) => {
 exports.updateGroupById = async (req, res) => {
     const updated = {
         name: req.body.name,
+        faculty: req.body.faculty,
         course: req.body.course
     };
     try {
