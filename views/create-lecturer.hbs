@@ -7,16 +7,6 @@
                 <input type="text" name="fullName">
                 <label>Անուն, ազգանուն</label>
             </div>
-
-            <div class="input-field col s6">
-                <select name="subject_id" id="subject_id">
-                    <option value="" disabled selected>Ընտրել առարկա</option>
-                    {{#each subjects}}
-                        <option value="{{_id}}">{{name}}</option>
-                    {{/each}}
-                </select>
-                <label>Ընտրել առարկա</label>
-            </div>
         </div>
 
         <button type="submit" class="btn">Ավելացնել</button>

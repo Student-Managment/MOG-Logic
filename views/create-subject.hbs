@@ -1,5 +1,5 @@
 <div class="row">
-    <form action="/subjects/create" method="POST" class="col s12">
+    <form action="/groups/subjects/create/{{groupId}}" method="POST" class="col s12">
         <h2>Ավելացնել առարկա</h2>
 
         <div class="row">
@@ -7,15 +7,29 @@
                 <input type="text" name="name">
                 <label>Առարկայի անվանուն</label>
             </div>
+        </div>
 
+        <div class="input-field col s6">
+            <select name="lecturer_id" id="lecturer_id">
+                <option value="" disabled selected>Ընտրել դասախոս</option>
+                {{#each lecturers}}
+                    <option value="{{_id}}">{{fullName}}</option>
+                {{/each}}
+            </select>
+            <label>Ընտրել դասախոս</label>
+        </div>
+
+        <div class="row">
             <div class="input-field col s6">
-                <select name="group_id" id="group_id">
-                    <option value="" disabled selected>Ընտրել խումբ</option>
-                    {{#each groups}}
-                        <option value="{{_id}}">{{name}}</option>
-                    {{/each}}
-                </select>
-                <label>Ընտրել խումբ</label>
+                <input type="text" name="credit_1">
+                <label>Credit 1 kisamyak</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="credit_2">
+                <label>Credit 2 kisamyak</label>
             </div>
         </div>
 

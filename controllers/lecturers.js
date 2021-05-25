@@ -18,8 +18,7 @@ exports.getLecturerById = async (req, res) => {
 
 exports.createLecturer = async (req, res) => {
     const lecturer = new Lecturer({
-        fullName: req.body.fullName,
-        subject_id: req.body.subject_id
+        fullName: req.body.fullName
     })
     await lecturer.save();
     res.redirect('/lecturers')
@@ -27,8 +26,7 @@ exports.createLecturer = async (req, res) => {
 
 exports.updateLecturerById = async (req, res) => {
     const updated = {
-        fullName: req.body.fullName,
-        subject_id: req.body.subject_id
+        fullName: req.body.fullName
     };
     try {
         const lecturer = await Lecturer.findOneAndUpdate(

@@ -1,15 +1,17 @@
 const { buildQuery } = require('../utils/util');
-const { Subject, Lesson } = require('../models');  
-
+const { createProgress } = require('../utils/progress');
+const { Subject, Lesson, Student, Group } = require('../models'); 
+ 
 exports.getLessons = async (req, res) => {
-    const subID = req.params.subject_id;
-    const lessons = await Lesson.find({ subject_id: subID }).lean();
-    res.render('lessons', { lessons, subID });
+    const subId = req.params.subject_id;
+    const subject = await Subject.findById(subId).lean();
+    const lessons = await Lesson.find({ subject_id: subId }).lean();
+    res.render('lessons', { lessons, subId, subject });
 }
 
 exports.createLessonPage = async (req, res) => {
-    const subID = req.params.subject_id;
-    res.render('create-lesson', { subID });
+    const subId = req.params.subject_id;
+    res.render('create-lesson', { subId });
 }
 
 exports.getLessonById = async (req, res) => {
@@ -19,13 +21,19 @@ exports.getLessonById = async (req, res) => {
 }
 
 exports.createLesson = async (req, res) => {
-    const lesson = new Lesson({
+    const subject = await Subject.findById(req.params.subject_id).lean();
+    const group = await Group.findById(subject.group_id);
+
+    const students = await Student.find({ group_id: group._id });    
+
+    const lesson = await Lesson.create({
         type: req.body.type,
         topic: req.body.topic,
         date: req.body.date,
         subject_id: req.params.subject_id,
-    })
-    await lesson.save();
+    });
+    createProgress(lesson, students);
+
     res.redirect(`/subjects/lessons/${req.params.subject_id}`);
 }
 

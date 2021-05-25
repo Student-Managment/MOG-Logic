@@ -1,5 +1,5 @@
 <div class="row">
-    <form action="/subjects/lessons/create/{{subID}}" method="POST" class="col s12">
+    <form action="/subjects/lessons/create/{{subId}}" method="POST" class="col s12">
         <h2>Ավելացնել թեմա</h2>
         <div class="row">
             <div class="input-field col s6">
@@ -8,20 +8,29 @@
             </div>
 
             <div class="input-field col s6">
-                <input type="text" name="type">
-                <label>Տեսակը</label>
+                <select name="type" id="lecturer_id">
+                    <option value="" disabled selected>Ընտրել Տեսակը</option>
+                    <option value="Դասախոսություն">Դասախոսություն</option>
+                    <option value="Գործնական">Գործնական</option>
+                    <option value="Լաբորատոր">Լաբորատոր</option>
+                    <option value="Միջանկյալ">Միջանկյալ</option>
+                    <option value="Ստուգարք">Ստուգարք</option>
+                    <option value="Քննություն1">Քննություն 1</option>
+                    <option value="Քննություն2">Քննություն 2</option>
+                </select>
+                <label>Ընտրել դասախոս</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <input type="date" name="date">
+                <input type="text" name="date">
                 <label>Ամսաթիվ</label>
             </div>
         </div>
 
         <div class="btn-padding">
-            <button type="submit" class="btn">Ավելացնել</button>
+            <button type="submit" class="btn-small">Ավելացնել</button>
         </div>
     </form>
 </div>

@@ -1,5 +1,5 @@
 const { buildQuery } = require('../utils/util');
-const { Group } = require('../models')
+const { Group, Subject } = require('../models');
 
 exports.getGroups = async (req, res) => {
     // const groups = await Group.find().lean();
@@ -13,14 +13,13 @@ exports.getGroups = async (req, res) => {
                             .populate({ path: 'lecturer' })
                             .lean();
     const count = await Group.countDocuments(queryObject);
-    console.log(groups);
     res.render('groups', { groups, count });
 }
 
-exports.getJournal = async (req, res) => {
+exports.getSubjectProgress = async (req, res) => {
     const group = await Group.findById(req.params.id).lean();
 
-    res.render('journal', { group });
+    res.render('subject-progress', { group });
 }
 
 exports.createGroupPage = (req, res) => {

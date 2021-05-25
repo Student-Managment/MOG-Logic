@@ -1,7 +1,8 @@
 <div class="subject">
     <div class="table-head">
-        <h2>Առարկաներ({{count}})</h2>
-        <a class="btn btn-small" href="/subjects/create">Ավելացնել առարկա</a>
+        <h2>խումբ՝ {{group.name}}</h2>
+        <h3>Առարկաներ ({{count}})</h3>
+        <a class="btn-small" href="/groups/subjects/create/{{group._id}}">Ավելացնել առարկա</a>
     </div>
 
     <table class="table table-bordered">
@@ -9,6 +10,8 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Առարկայի անվանում</th>
+            <th scope="col">Credit 1 kisamyak</th>
+            <th scope="col">Credit 2 kisamyak</th>
             <th scope="col">Դասախոս</th>
             <th scope="col">Թեմաներ</th>
             <th scope="col">Գործողություններ</th>
@@ -19,16 +22,16 @@
             <form action="subjects/delete/{{_id}}" method="GET">
                 <tr>
                     <th scope="row">{{inc @index}}</th>
-                    <td><a href="/subjects/{{_id}}">{{name}}</a></td>
-                    <td>{{#each lecturer}}
-                            {{fullName}}
-                        {{/each}}    
+                    <td><a href="/groups/subjects/{{../group._id}}/{{_id}}">{{name}}</a></td>
+                    <td>{{credit_1}}</td>
+                    <td>{{credit_2}}</td>
+                    <td>{{lecturer.fullName}}</td>
+                    <td><a href="/subjects/progress/{{_id}}">Առաջադիմություն</a></td>
+                    <td>
+                        <a href="/subjects/lessons/{{_id}}">Թեմաներ ({{lessons_count}})</a>
                     </td>
                     <td>
-                        <a href="subjects/lessons/{{_id}}">Թեմաներ ({{lessons_count}})</a>
-                    </td>
-                    <td>
-                        <button class="btn btn-small" type="submit">Ջնջել</button>
+                        <button class="btn-small" type="submit">Ջնջել</button>
                     </td>
                 </tr>
             </form>

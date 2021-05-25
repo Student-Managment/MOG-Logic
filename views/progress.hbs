@@ -1,0 +1,102 @@
+<div class="subject">
+    <div class="table-head">
+        <h2>Դասախոս` <b>{{lecturer.fullName}}, Առարկա` {{subject.name}}</b></h2>
+    </div>
+    <div class="table-head">
+        <h3>
+            <p>
+                <b>Ֆակուլտետ` {{group.faculty}}, Խումբ` {{group.name}}</b>
+            </p>
+           
+        </h3>
+    </div>
+</div>
+
+<div class="table_part">
+    <div style="widdiv:100%; overflow:hidden">
+
+        <div  class="first-section">
+            <div class="rotate">
+                <div class="journalMark">
+                    <b>#</b>
+                </div>
+            </div>
+            <div class="rotate">
+                <div class="journalMembor names-srn">
+                    <b>ԱԱՀ</b>
+                </div>
+            </div>
+            {{#each lessons}}
+                <div class="rotate">
+                    <div class="journalHead">
+                        {{topic}}
+                        <br>{{type}}
+                        <br>{{date}}
+                    </div>
+                </div>
+            {{/each}}
+            <div class="rotate">
+                <div class="journalHead">
+                    MOG
+                </div>
+            </div>
+        </div>
+        <section class="second-section">
+            <div>
+
+                {{#each progresses}}
+                    <div>
+                        <form action="/subjects/progress/{{../subId}}/{{_id}}" method="POST" class="st-id">
+                            <input type="hidden" value="{{lesson_id}}" name="lesson_id">
+                            {{#each students_marks}}
+                                    <section>
+                                        <div class="journalMark">
+                                            
+                                            <input type="hidden" value="{{_id}}" name="_id">
+                                            <input type="hidden" value="{{student_id}}" name="student_id">
+                                            <input type="text" value="{{mark}}" name="mark">
+                                        </div>
+                                    </section>
+                            {{/each}}
+                            <input type="submit" value="+" class="sub" />
+                        </form>
+                    </div>
+                {{/each}}
+         
+              
+                <div>
+                    <form action="/subjects/progress/average/{{subId}}" method="POST" class="st-id">
+                        {{#times studentsCount}}
+                            <section>
+                                <div class="journalMark">
+                                    <input type="hidden" value="{{student_id}}">
+                                    <input type="text" value="{{mark}} ">
+                                </div>
+                            </section>
+                        {{/times}}
+                        
+                        <input type="submit" value="Average" class="sub" />
+                    </form>
+                </div>
+
+            </div>
+   
+            <div class="student-list" >
+            {{#each students}}    
+                <div class="names-numbers">
+                    <div>
+                        <div class="journalMark">
+                            {{inc @index}}
+                        </div>
+                    </div>
+                    <div class="names">
+                        <input type="hidden" value="{{_id}}">
+                        {{fullName}}
+                    </div>       
+                </div>
+            {{/each}}
+            </div>
+        </section>
+    </div>
+    
+</div>

@@ -1,7 +1,7 @@
 <div class="subject">
     <div class="table-head">
-        <h2>Թեմաներ</h2>
-        <a class="btn btn-small" href="/subjects/lessons/create/{{subID}}">Ավելացնել թեմա</a>
+        <h2>{{subject.name}} (Թեմաներ)</h2>
+        <a class="btn-small" href="/subjects/lessons/create/{{subId}}">Ավելացնել թեմա</a>
     </div>
 
     <table class="table table-bordered">
@@ -19,12 +19,14 @@
             <form action="/subjects/lessons/{{subject_id}}/delete/{{_id}}" method="GET">
                 <tr>
                     <th scope="row">{{inc @index}}</th>
-                    <td>{{topic}}</td>
+                    <td>
+                        <a href="/subjects/lessons/{{subject_id}}/{{_id}}">
+                        {{topic}}</a>
+                    </td>
                     <td>{{type}}</td>
                     <td>{{date}}</td>
                     <td>
-                        <a class="btn btn-small" href="/subjects/lessons/{{subject_id}}/{{_id}}">Փոփոխել</a>
-                        <button class="btn btn-small" type="submit">Ջնջել</button>
+                        <button class="btn-small" type="submit">Ջնջել</button>
                     </td>
                 </tr>
             </form>

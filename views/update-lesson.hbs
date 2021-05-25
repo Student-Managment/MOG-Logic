@@ -9,20 +9,29 @@
             </div>
 
             <div class="input-field col s6">
-                <input type="text" name="type" value="{{lesson.type}}">
-                <label>Տեսակը</label>
+                <select name="type" id="lecturer_id">
+                    <option value="" disabled selected>Ընտրել Տեսակը</option>
+                    <option value="Դասախոսություն">Դասախոսություն</option>
+                    <option value="Գործնական">Գործնական</option>
+                    <option value="Լաբորատոր">Լաբորատոր</option>
+                    <option value="Միջանկյալ">Միջանկյալ</option>
+                    <option value="Ստուգարք">Ստուգարք</option>
+                    <option value="Քննություն1">Քննություն 1</option>
+                    <option value="Քննություն2">Քննություն 2</option>
+                </select>
+                <label>{{lesson.type}}</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <input type="date" name="date" value="{{lesson.date}}">
+                <input type="text" name="date" value="{{lesson.date}}">
                 <label>Ամսաթիվ</label>
             </div>
         </div>
 
         <div class="btn-padding">
-            <button type="submit" class="btn">Փոփոխել</button>
+            <button type="submit" class="btn-small">Փոփոխել</button>
         </div>
     </form>
 </div>

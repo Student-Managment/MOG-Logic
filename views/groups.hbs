@@ -11,6 +11,7 @@
             <th scope="col">Խմբի անուն</th>
             <th scope="col">Ֆակուլտետ</th>
             <th scope="col">Կուրս</th>
+            <th scope="col">Մատյան</th>
             <th scope="col">Ուսանողներ</th>
             <th scope="col">Գործողություններ</th>
         </tr>
@@ -23,6 +24,7 @@
                     <td><a class="btn btn-small" href="/groups/{{_id}}">{{name}}</a></td>
                     <td>{{faculty}}</td>
                     <td>{{course}}</td>
+                    <td><a href="/groups/subjects/{{_id}}">Մատյան</a></td>
                     <td><a href="/groups/students/{{_id}}">Ուսանողներ ({{students_count}})</a></td>
                     <td>
                         <button class="btn btn-small" type="submit">Ջնջել</button>

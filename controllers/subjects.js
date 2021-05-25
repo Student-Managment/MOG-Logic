@@ -1,55 +1,71 @@
 const { buildQuery } = require('../utils/util');
 const { Group, Subject, Lecturer } = require('../models');  
 
+
 exports.getSubjects = async (req, res) => {
-    let queryObject = buildQuery(req.query);
+    const groupId = req.params.group_id;
+    const group = await Group.findById(groupId).lean();
+    
+    // const subjects = await Subject.find({group_id: groupId}).lean();
+
 
     const subjects = await Subject
-                            .find(queryObject)
+                            .find({group_id: groupId})
                             .populate({ path: 'lessons_count' })
                             .populate({ path: 'lessons' })
-                            .populate({ path: 'lecturer' })
+                            .populate('lecturer')
                             .lean();
-    const count = await Subject.countDocuments(queryObject);
+    const count = await Subject.countDocuments({group_id: groupId});
 
-    console.log(subjects);
-    res.render('subjects', { subjects, count });
+    res.render('subjects', { group, subjects, count });
 }
 
 exports.createSubjectPage = async (req, res) => {
+    const groupId = req.params.group_id;
     const lecturers = await Lecturer.find().lean();
-    const groups = await Group.find().lean();
-    res.render('create-subject', { lecturers, groups });
+
+    res.render('create-subject', { lecturers, groupId });
 }
 
 exports.getSubjectById = async (req, res) => {
-    const subject = await Subject.findById(req.params.id).lean();
+    const groupId = req.params.group_id;
     const lecturers = await Lecturer.find().lean();
-    const groups = await Group.find().lean();
-    res.render('update-subject', { subject, lecturers, groups });
+    const subject = await Subject.findById(req.params.id).lean();
+
+    res.render('update-subject', { subject, lecturers, groupId });
 }
 
 exports.createSubject = async (req, res) => {
     const subject = new Subject({
         name: req.body.name,
-        group_id: req.body.group_id
+        credit_1: req.body.credit_1,
+        credit_2: req.body.credit_2,
+        lecturer_id: req.body.lecturer_id,
+        group_id: req.params.group_id
     })
     await subject.save();
-    res.redirect('/subjects')
+    res.redirect(`/groups/subjects/${req.params.group_id}`);
 }
 
 exports.updateSubjectById = async (req, res) => {
     const updated = {
         name: req.body.name,
-        group_id: req.body.group_id
+        credit_1: req.body.credit_1,
+        credit_2: req.body.credit_2,
+        lecturer_id: req.body.lecturer_id,
+        group_id: req.params.group_id
     };
     try {
-        const subject = await Subject.findOneAndUpdate(
+        const subject = await Subject.update(
             {_id: req.params.id},
             {$set: updated},
-            {new: true}
+            {
+                new: true,
+                upsert: true,
+                // multiple: true
+            }
         );
-        return res.status(200).redirect('/subjects');
+        return res.status(200).redirect(`/groups/subjects/${req.params.group_id}`);
     } catch(e) {
         console.log(e);
     }

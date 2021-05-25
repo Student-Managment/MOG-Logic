@@ -6,7 +6,7 @@ const exphbs = require('express-handlebars')
 const handlebars = require('handlebars');
 const { router } = require('./routes');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 const app = express()
 
@@ -14,14 +14,12 @@ handlebars.registerHelper('inc', function(value, options)
 {
     return parseInt(value) + 1;
 });
-handlebars.registerHelper('equal', function(lvalue, rvalue, options) {
-    if (arguments.length < 3)
-        throw new Error("Handlebars Helper equal needs 2 parameters");
-    if( lvalue!=rvalue ) {
-        return options.inverse(this);
-    } else if(lvalue == rvalue) {
-        return options.fn(this);
-    }
+
+handlebars.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 0; i < n; ++i)
+        accum += block.fn(i);
+    return accum;
 });
 
 const hbs = exphbs.create({

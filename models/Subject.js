@@ -5,9 +5,22 @@ const schema = new Schema({
         type: String,
         required: true
     },
+    credit_1: {
+        type: Number,
+        required: true
+    },
+    credit_2: {
+        type: Number,
+        required: true
+    },
     group_id: {
         type: Schema.Types.ObjectId,
         ref: 'Group',
+        required: true
+    },
+    lecturer_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Lecturer',
         required: true
     }
 }, {
@@ -32,8 +45,9 @@ schema.virtual('lessons', {
 
 schema.virtual('lecturer', {
     ref: 'Lecturer',
-    localField: '_id',
-    foreignField: 'subject_id',
+    localField: 'lecturer_id',
+    foreignField: '_id',
+    justOne: true
 });
 
 module.exports = model('Subject', schema);

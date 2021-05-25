@@ -5,11 +5,13 @@ const subjectsRoutes = require('./subjects');
 const studentsRoutes = require('./students');
 const lecturersRoutes = require('./lecturers');
 const lessonsRoutes = require('./lessons');
+const progressRoutes = require('./progress');
 
 router.use('/groups', groupsRoutes);
-router.use('/subjects', subjectsRoutes);
+router.use('/groups/subjects', subjectsRoutes);
 router.use('/groups/students', studentsRoutes);
 router.use('/lecturers', lecturersRoutes);
 router.use('/subjects/lessons', lessonsRoutes);
+router.use('/subjects/progress', progressRoutes);
 
 module.exports = { router };

@@ -1,5 +1,5 @@
 <div class="row">
-    <form action="/subjects/{{subject._id}}" method="POST" class="col s12">
+    <form action="/groups/subjects/{{groupId}}/{{subject._id}}" method="POST" class="col s12">
         <h2>{{subject.name}}</h2>
 
         <div class="row">
@@ -7,15 +7,26 @@
                 <input type="text" name="name" value="{{subject.name}}">
                 <label>Առարկայի անվանուն</label>
             </div>
-
             <div class="input-field col s6">
-                <select name="group_id" id="group_id">
-                    <option value="" disabled selected>Ընտրել խումբ</option>
-                    {{#each groups}}
-                        <option value="{{_id}}">{{name}}</option>
+                <select name="lecturer_id" id="lecturer_id">
+                    <option value="" disabled selected>Ընտրել դասախոս</option>
+                    {{#each lecturers}}
+                        <option value="{{_id}}">{{fullName}}</option>
                     {{/each}}
                 </select>
-                <label>Ընտրել խումբ</label>
+                <label>Ընտրել դասախոս</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="credit_1" value="{{subject.credit_1}}">
+                <label>Credit 1 kisamyak</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input type="text" name="credit_2" value="{{subject.credit_2}}">
+                <label>Credit 2 kisamyak</label>
             </div>
         </div>
 
