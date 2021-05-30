@@ -1,5 +1,5 @@
 const { buildQuery } = require('../utils/util');
-const { createNewProgress, calculateMogs } = require('../utils/progress');
+const { createNewProgress } = require('../utils/progress');
 const { Progress, Group, Subject, Lesson, Student, Lecturer } = require('../models');  
 
 exports.getProgress = async (req, res) => {
@@ -36,6 +36,7 @@ exports.getProgress = async (req, res) => {
                                     .find({
                                         lesson_id: { $in: lessons.map(lesson => lesson._id) } 
                                     })
+                                    .populate({ path: 'lesson_id', select: 'type' })
                                     .sort({lesson_id: 1})
                                     .lean();
         const progressesExams = await Progress
@@ -46,12 +47,16 @@ exports.getProgress = async (req, res) => {
                                     .sort({lesson_id: 1})
                                     .lean();
 
-        // console.log('progressesExams: ', progressesExams);
+        // console.log('progresses: ', progresses);
+        // const mogs = [];
+        // progressesExams.map(progressExam => {
+        //     console.log('progressExam marks: ', progressExam.students_marks);            
+        // })
 
-        const mogs = await calculateMogs(subject, students, progressesExams);
+        // const mogs = await calculateMogs(subject, students, progressesExams);
         // console.log('mogs: ', mogs);
 
-        res.render('progress', { subId, subject, group, lecturer, lessons, students, progresses, mogs, studentsCount });
+        res.render('progress', { subId, subject, group, lecturer, lessons, students, progresses, progressesExams, studentsCount });
 
     } catch(e) {
         console.log(e);

@@ -19,7 +19,7 @@
         </thead>
         <tbody>
         {{#each subjects}}
-            <form action="subjects/delete/{{_id}}" method="GET">
+            <form action="/groups/subjects/{{group_id}}/delete/{{_id}}" method="GET">
                 <tr>
                     <th scope="row">{{inc @index}}</th>
                     <td><a href="/groups/subjects/{{../group._id}}/{{_id}}">{{name}}</a></td>

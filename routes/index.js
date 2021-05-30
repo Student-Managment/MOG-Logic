@@ -6,8 +6,10 @@ const studentsRoutes = require('./students');
 const lecturersRoutes = require('./lecturers');
 const lessonsRoutes = require('./lessons');
 const progressRoutes = require('./progress');
+const examsMarksRoutes = require('./examsMarks');
 
 router.use('/groups', groupsRoutes);
+router.use('/groups/exams-marks', examsMarksRoutes);
 router.use('/groups/subjects', subjectsRoutes);
 router.use('/groups/students', studentsRoutes);
 router.use('/lecturers', lecturersRoutes);

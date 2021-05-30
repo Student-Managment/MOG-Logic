@@ -1,14 +1,6 @@
 <div class="subject">
     <div class="table-head">
-        <h2>Դասախոս` <b>{{lecturer.fullName}}, Առարկա` {{subject.name}}</b></h2>
-    </div>
-    <div class="table-head">
-        <h3>
-            <p>
-                <b>Ֆակուլտետ` {{group.faculty}}, Խումբ` {{group.name}}</b>
-            </p>
-           
-        </h3>
+        <h2>Ֆակուլտետ` <b>{{group.faculty}}, Խումբ` {{group.name}}</b></h2>
     </div>
 </div>
 
@@ -26,12 +18,11 @@
                     <b>ԱԱՀ</b>
                 </div>
             </div>
-            {{#each lessons}}
+            {{#each subjects}}
                 <div class="rotate">
                     <div class="journalHead">
-                        {{topic}}
-                        <br>{{type}}
-                        <br>{{date}}
+                        {{name}}
+                        <br>Credit` {{credit_1}}
                     </div>
                 </div>
             {{/each}}
@@ -44,17 +35,17 @@
         <section class="second-section">
             <div>
 
-                {{#each progresses}}
-                    <div>
-                        <form action="/subjects/progress/{{../subId}}/{{_id}}" method="POST" class="st-id">
-                            <input type="hidden" value="{{lesson_id}}" name="lesson_id">
-                            
+                {{#each examsMarks}}
+                    <div class="subject-marks-{{inc @index}}">
+                        <form action="/groups/exams-marks/{{../groupId}}/{{_id}}" method="POST" class="st-id">
+                            <input type="hidden" value="{{subject_id._id}}" name="subject_id">
+                            <input type="hidden" value="{{subject_id.credit_1}}" class="credit">
                             {{#each students_marks}}
                                     <section>
                                         <div class="journalMark">
                                             <input type="hidden" value="{{_id}}" name="_id">
                                             <input type="hidden" value="{{student_id}}" name="student_id">
-                                            <input type="text" value="{{mark}}" name="mark">
+                                            <input type="text" value="{{mark}}" name="mark" class="mark">
                                         </div>
                                     </section>
                             {{/each}}
@@ -63,6 +54,11 @@
                     </div>
                 {{/each}}
 
+                <div class="mogs">
+                    {{!-- <input type="hidden" value="{{subject.credit_1}}" class="credit">
+                    <input type="hidden" value="{{subject.credit_2}}" class="credit"> --}}
+                </div>
+                   <button class="calcMog" > Calculate MOG </button>
             </div>
    
             <div class="student-list" >

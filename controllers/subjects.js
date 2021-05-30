@@ -1,5 +1,6 @@
 const { buildQuery } = require('../utils/util');
-const { Group, Subject, Lecturer } = require('../models');  
+const { createExamsMarks } = require('../utils/examsMarks');
+const { Group, Subject, Lecturer, Student } = require('../models');  
 
 
 exports.getSubjects = async (req, res) => {
@@ -17,7 +18,7 @@ exports.getSubjects = async (req, res) => {
                             .lean();
     const count = await Subject.countDocuments({group_id: groupId});
 
-    res.render('subjects', { group, subjects, count });
+    res.render('subjects', { groupId, group, subjects, count });
 }
 
 exports.createSubjectPage = async (req, res) => {
@@ -36,6 +37,9 @@ exports.getSubjectById = async (req, res) => {
 }
 
 exports.createSubject = async (req, res) => {
+
+    const students = await Student.find({ group_id: req.params.group_id });    
+
     const subject = new Subject({
         name: req.body.name,
         credit_1: req.body.credit_1,
@@ -44,6 +48,7 @@ exports.createSubject = async (req, res) => {
         group_id: req.params.group_id
     })
     await subject.save();
+    createExamsMarks(subject, students);
     res.redirect(`/groups/subjects/${req.params.group_id}`);
 }
 
@@ -56,15 +61,15 @@ exports.updateSubjectById = async (req, res) => {
         group_id: req.params.group_id
     };
     try {
-        const subject = await Subject.update(
+        const subject = await Subject.findOneAndUpdate(
             {_id: req.params.id},
             {$set: updated},
             {
                 new: true,
-                upsert: true,
-                // multiple: true
+                upsert: true
             }
         );
+
         return res.status(200).redirect(`/groups/subjects/${req.params.group_id}`);
     } catch(e) {
         console.log(e);
@@ -74,7 +79,7 @@ exports.updateSubjectById = async (req, res) => {
 exports.deleteSubjectById = async (req, res) => {
     try {
         await Subject.findByIdAndDelete(req.params.id);
-        return res.status(200).redirect('/subjects');
+        return res.status(200).redirect(`/groups/subjects/${req.params.group_id}`);
     } catch(e) {
         console.log(e);
     }
